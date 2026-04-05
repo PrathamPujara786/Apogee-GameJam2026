@@ -12,6 +12,10 @@ GameObject:
   - component: {fileID: 1642310856511247901}
   - component: {fileID: 4789709584879361519}
   - component: {fileID: 6000356471488910880}
+  - component: {fileID: 6428536146047323309}
+  - component: {fileID: 1898479744897603568}
+  - component: {fileID: 7413579364614247698}
+  - component: {fileID: -4141080494452257601}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Enemy
@@ -152,3 +156,81 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   maxHealth: 50
+--- !u!114 &6428536146047323309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5308476407043521059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bb4574442c26df419a7fda994cad421, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AoEAttack
+  attackRadius: 2.5
+  sterilizationPerHit: 0.05
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  tilemap: {fileID: 0}
+  tileSwapper: {fileID: 0}
+  attackAction: {fileID: 0}
+--- !u!50 &1898479744897603568
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5308476407043521059}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &7413579364614247698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5308476407043521059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34e069d276dbc62438391d14e5a2138c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  moveSpeed: 200
+  dashSpeed: 600
+  dashDuration: 0.18
+  dashCooldown: 0.8
+--- !u!114 &-4141080494452257601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5308476407043521059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9731d06003d5354cad9848e8e07a0ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileSwapper
+  normalTile: {fileID: 0}
+  sterilizedTile: {fileID: 0}
+  tilemap: {fileID: 0}

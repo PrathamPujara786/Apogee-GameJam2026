@@ -13,7 +13,7 @@ public class PlayerAttack : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform gunPivot;       // Drag GunPivot here
     public Transform firePoint;      // Drag FirePoint here
-    public Animator animator;
+   // public Animator animator;
 
     private PlayerInputActions inputActions;
     private float nextFireTime;
@@ -60,6 +60,6 @@ public class PlayerAttack : MonoBehaviour
         if (bullet.TryGetComponent<Bullet>(out var b))
             b.Init(damage, bulletSpeed, bulletLifetime);
 
-        animator?.SetTrigger("Shoot");
+        //animator?.SetTrigger("Shoot");
     }
 }

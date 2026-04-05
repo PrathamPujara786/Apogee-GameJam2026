@@ -1,11 +1,18 @@
 using UnityEngine;
+using System;
 
 public class GameState : MonoBehaviour
 {
     public static GameState Instance { get; private set; }
 
-    [Range(0f, 1f)]
-    public float WorldSterilizationLevel { get; private set; }
+    [Header("Sterilization")]
+    [SerializeField, Range(0f, 1f)]
+    private float _worldSterilizationLevel = 0f;
+
+    public float WorldSterilizationLevel => _worldSterilizationLevel;
+
+    // Other systems subscribe to this to react when sterilization changes
+    public event Action<float> OnSterilizationChanged;
 
     private void Awake()
     {
@@ -18,12 +25,27 @@ public class GameState : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    /// <summary>
-    /// Called by the AoE system each time Sterilization fires.
-    /// Amount should be normalized 0–1 (e.g. 0.05 per AoE use).
-    /// </summary>
     public void AddSterilization(float amount)
     {
-        WorldSterilizationLevel = Mathf.Clamp01(WorldSterilizationLevel + amount);
+        float previous = _worldSterilizationLevel;
+        _worldSterilizationLevel = Mathf.Clamp01(_worldSterilizationLevel + amount);
+
+        if (!Mathf.Approximately(previous, _worldSterilizationLevel))
+            OnSterilizationChanged?.Invoke(_worldSterilizationLevel);
     }
+
+    // Useful for checking AI phase thresholds cleanly
+    public SterilizationPhase CurrentPhase => _worldSterilizationLevel switch
+    {
+        < 0.34f => SterilizationPhase.Aggressive,
+        < 0.67f => SterilizationPhase.Fleeing,
+        _ => SterilizationPhase.Cowering
+    };
+}
+
+public enum SterilizationPhase
+{
+    Aggressive,
+    Fleeing,
+    Cowering
 }
